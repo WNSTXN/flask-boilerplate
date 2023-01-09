@@ -1,15 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
+from app.libs import SQLExtension
 
-from app import App
-
-
-class SQLExtension:
-
-    db = SQLAlchemy(App.flask)
-    type = db.Model
-
-
-class Model(SQLExtension.type):
+class Model(SQLExtension.Type):
     
     __tablename__ = 'Model'
     db = SQLExtension.db

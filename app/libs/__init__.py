@@ -1,1 +1,1 @@
-from app.libs.debug import print
+from app.libs.sqlalchemy import SQLExtension
