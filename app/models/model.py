@@ -12,4 +12,5 @@ class SQLExtension:
 class Model(SQLExtension.type):
     
     __tablename__ = 'Model'
-    id = SQLExtension.db.Column(SQLExtension.db.Integer, primary_key=True)
+    db = SQLExtension.db
+    id = db.Column(db.Integer, primary_key=True)
