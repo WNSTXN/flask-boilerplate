@@ -1,8 +1,8 @@
-
 from flask import Flask
 from flask_cors import CORS
 
 from app.config import Config
+
 
 class App:
 
@@ -28,4 +28,3 @@ class App:
     def route(rule: str, **options):
 
         return App.flask.route(rule, **options)
-
