@@ -1,7 +1,6 @@
-from app.libs import SQLExtension
+from app.models.bases import BaseModel
 
-class Model(SQLExtension.Type):
+
+class Model(BaseModel):
     
     __tablename__ = 'Model'
-    db = SQLExtension.db
-    id = db.Column(db.Integer, primary_key=True)
