@@ -24,7 +24,7 @@ class App:
     patch = flask.patch
 
 
-    def run(debug: bool | None, load_dotenv: bool=True, **options):
+    def run(debug: None | bool=None, load_dotenv: bool=True, **options):
 
         if not debug:
             print(f'Waitress serving on http://{App.config["HOST"]}:{App.config["PORT"]}')
