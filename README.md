@@ -1,5 +1,7 @@
 # flask-boilerplate
 
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
+
 `flask-boilerplate` features improved type hints and developer ergonomics out of the box. More about Flask [here](https://flask.palletsprojects.com/).
 
 ## Requirements

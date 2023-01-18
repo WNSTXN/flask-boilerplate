@@ -1,0 +1,8 @@
+[FORMAT]
+good-names=x,y,z,id
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    no-name-in-module,
+    line-too-long,

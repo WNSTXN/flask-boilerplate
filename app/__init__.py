@@ -8,7 +8,39 @@ from app.config import Config
 
 
 class App:
+    """
+    Summary
+    -------
+    Encapsulated static class containing the Flask application and its configuration
 
+    Attributes
+    ----------
+    flask (Flask) : Flask application
+    config (Config) : Flask application configuration
+
+    Methods
+    -------
+    run(debug: bool=None, load_dotenv: bool=True, **options)
+        serve the Flask application
+
+    route(rule: str, methods: list[HTTPMethods]=['GET'], **options)
+        decorate a view function to register it with the given URL rule and options.
+
+    get(rule: str, **options)
+        convenience decorator to register a view function for a URL rule and the GET HTTP method
+
+    post(rule: str, **options)
+        convenience decorator to register a view function for a URL rule and the POST HTTP method
+
+    put(rule: str, **options)
+        convenience decorator to register a view function for a URL rule and the PUT HTTP method
+
+    delete(rule: str, **options)
+        convenience decorator to register a view function for a URL rule and the DELETE HTTP method
+
+    patch(rule: str, **options)
+        convenience decorator to register a view function for a URL rule and the PATCH HTTP method
+    """
     HTTPMethods = Literal['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
     flask = Flask(__name__)
     CORS(flask)
@@ -23,23 +55,51 @@ class App:
     delete = flask.delete
     patch = flask.patch
 
+    @staticmethod
+    def run(debug: bool=None, load_dotenv: bool=True, **options):
+        """
+        Summary
+        -------
+        serve the Flask application using waitress
 
-    def run(debug: None | bool=None, load_dotenv: bool=True, **options):
-
+        Parameters
+        ----------
+        debug (bool?) : if True, Flask's built-in development server is used
+        load_dotenv (bool?) : if True, Flask will load the .env file [debug only]
+        **options : additional options [debug only]
+        """
         if not debug:
             print(f'Waitress serving on http://{App.config["HOST"]}:{App.config["PORT"]}')
             serve(App.flask, host=App.config['HOST'], port=App.config['PORT'])
             return
-        
+
         App.flask.run(
             host=App.config['HOST'],
             port=App.config['PORT'],
-            debug=debug, 
-            load_dotenv=load_dotenv, 
+            debug=debug,
+            load_dotenv=load_dotenv,
             **options
         )
 
 
-    def route(rule: str, methods: list[HTTPMethods]=['GET'], **options):
+    @staticmethod
+    def route(rule: str, methods: list[HTTPMethods]=None, **options):
+        """
+        Summary
+        -------
+        decorate a view function to register it with the given URL rule and options.
+
+        Parameters
+        ----------
+        rule (str) : URL rule as string
+        methods (list[HTTPMethods]?) : list of HTTP methods this rule should be limited to
+        **options : additional options
+
+        Returns
+        -------
+        route (Callable) : route decorator
+        """
+        if not methods:
+            methods = ['GET']
 
         return App.flask.route(rule, methods=methods, **options)
