@@ -11,7 +11,7 @@ class App:
     """
     Summary
     -------
-    Encapsulated static class containing the Flask application and its configuration
+    encapsulated static class containing the Flask application and its configuration
 
     Attributes
     ----------
