@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- Docker
+- [Docker](https://www.docker.com/)
 
 ## Installation
 
@@ -19,7 +19,7 @@ sh requirements.sh
 ## Usage
 
 ```bash
-sh launch.sh -n <app-name>
+sh launch.sh -n $APP_NAME
 ```
 
 ## Architecture
